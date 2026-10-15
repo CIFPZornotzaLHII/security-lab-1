@@ -164,7 +164,7 @@ locate .nse | wc -l
 locate .nse | xargs grep 'categories'
 
 # Filtrar servicios
-locate .nse | xargs grep 'categories' | greo -oP '".*?"' |sort -u 
+locate .nse | xargs grep 'categories' | grep -oP '".*?"' | sort -u
 
 ```
 
@@ -179,7 +179,7 @@ sudo updatedb
 Ejecutar un conjunto de scripts, con el parámetro -sC se ejecutará un conjunto de scripts más utilizados desde los que se encuentren disponibles en ese puerto.
 
 ```bash
-nmap -p22 192.168.0.1 -sC -SV
+nmap -p22 192.168.0.1 -sC -sV
 ```
 
 

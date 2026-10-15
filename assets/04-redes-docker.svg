@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 440" width="880" height="440" font-family="'Segoe UI', system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <filter id="s4" x="-8%" y="-8%" width="116%" height="124%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect x="1" y="1" width="878" height="438" rx="18" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="440" y="40" text-anchor="middle" font-size="24" font-weight="700" fill="#0f172a">Redes de Docker: bridge vs. host</text>
+
+  <!-- ===== bridge ===== -->
+  <g filter="url(#s4)"><rect x="30" y="72" width="400" height="332" rx="14" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/></g>
+  <text x="230" y="100" text-anchor="middle" font-size="16" font-weight="700" fill="#0f172a">bridge <tspan font-size="12" fill="#64748b">(por defecto, recomendado)</tspan></text>
+
+  <rect x="56" y="120" width="348" height="52" rx="10" fill="#dbeafe" stroke="#60a5fa"/>
+  <text x="230" y="142" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1e40af">Anfitrión (tu equipo)</text>
+  <text x="230" y="160" text-anchor="middle" font-size="10.5" fill="#1d4ed8" font-family="'Consolas','Courier New',monospace">publica puertos: -p 8081:80</text>
+
+  <rect x="80" y="214" width="300" height="150" rx="10" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="230" y="236" text-anchor="middle" font-size="12" font-weight="700" fill="#5b21b6">red virtual aislada (lab-network)</text>
+
+  <g text-anchor="middle" font-size="11">
+    <rect x="98" y="252" width="118" height="46" rx="8" fill="#fff" stroke="#8b5cf6"/>
+    <text x="157" y="272" font-weight="700" fill="#5b21b6">kali</text>
+    <text x="157" y="288" font-size="9.5" fill="#7c3aed" font-family="'Consolas','Courier New',monospace">172.20.0.2</text>
+
+    <rect x="244" y="252" width="118" height="46" rx="8" fill="#fff" stroke="#8b5cf6"/>
+    <text x="303" y="272" font-weight="700" fill="#5b21b6">dvwa</text>
+    <text x="303" y="288" font-size="9.5" fill="#7c3aed" font-family="'Consolas','Courier New',monospace">172.20.0.3</text>
+
+    <line x1="216" y1="275" x2="244" y2="275" stroke="#8b5cf6" stroke-width="2"/>
+  </g>
+  <text x="230" y="332" text-anchor="middle" font-size="11" fill="#6d28d9">se hablan por nombre:</text>
+  <text x="230" y="350" text-anchor="middle" font-size="11" fill="#6d28d9" font-family="'Consolas','Courier New',monospace">nmap dvwa</text>
+
+  <!-- ===== host ===== -->
+  <g filter="url(#s4)"><rect x="450" y="72" width="400" height="332" rx="14" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/></g>
+  <text x="650" y="100" text-anchor="middle" font-size="16" font-weight="700" fill="#0f172a">host <tspan font-size="12" fill="#64748b">(sin aislamiento de red)</tspan></text>
+
+  <rect x="476" y="130" width="348" height="230" rx="10" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+  <text x="650" y="154" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1e40af">Anfitrión (tu equipo)</text>
+  <text x="650" y="173" text-anchor="middle" font-size="10.5" fill="#1d4ed8">el contenedor usa la pila de red del anfitrión directamente</text>
+
+  <g text-anchor="middle" font-size="11">
+    <rect x="540" y="214" width="220" height="60" rx="8" fill="#fff" stroke="#ef4444" stroke-width="2"/>
+    <text x="650" y="240" font-weight="700" fill="#b91c1c">kali</text>
+    <text x="650" y="260" font-size="10" fill="#dc2626" font-family="'Consolas','Courier New',monospace">comparte IP del anfitrión</text>
+  </g>
+  <text x="650" y="306" text-anchor="middle" font-size="11" fill="#475569">No hay red separada ni DNS por nombre.</text>
+  <text x="650" y="326" text-anchor="middle" font-size="11" fill="#475569">Útil para escanear la LAN real,</text>
+  <text x="650" y="344" text-anchor="middle" font-size="11" fill="#475569">pero rompe el aislamiento del lab.</text>
+
+  <text x="440" y="428" text-anchor="middle" font-size="11.5" fill="#94a3b8">Regla práctica: usa <tspan font-weight="700" fill="#5b21b6">bridge</tspan> para el laboratorio; <tspan font-weight="700" fill="#b91c1c">host</tspan> solo cuando necesites ver la red física.</text>
+</svg>

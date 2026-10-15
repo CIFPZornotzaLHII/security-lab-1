@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 560" width="880" height="560" font-family="'Segoe UI', system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <filter id="s3" x="-8%" y="-8%" width="116%" height="124%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+
+  <rect x="1" y="1" width="878" height="558" rx="18" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="440" y="40" text-anchor="middle" font-size="24" font-weight="700" fill="#0f172a">Topología del laboratorio</text>
+  <text x="440" y="64" text-anchor="middle" font-size="14" fill="#64748b">Todo vive en una red privada de Docker. El atacante y las víctimas se resuelven por su nombre.</text>
+
+  <!-- network bus -->
+  <rect x="40" y="250" width="800" height="60" rx="14" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2.5"/>
+  <text x="60" y="276" font-size="14" font-weight="700" fill="#5b21b6">red: lab-network</text>
+  <text x="60" y="296" font-size="11.5" fill="#7c3aed" font-family="'Consolas','Courier New',monospace">bridge · 172.20.0.0/16 · DNS interno por nombre de contenedor</text>
+
+  <!-- Attacker (top) -->
+  <g filter="url(#s3)">
+    <rect x="350" y="92" width="180" height="92" rx="14" fill="#fef2f2" stroke="#ef4444" stroke-width="2.5"/>
+  </g>
+  <text x="440" y="120" text-anchor="middle" font-size="15" font-weight="700" fill="#b91c1c">🛡️ kali (atacante)</text>
+  <text x="440" y="142" text-anchor="middle" font-size="11.5" fill="#dc2626">nmap · hydra · herramientas</text>
+  <text x="440" y="162" text-anchor="middle" font-size="11" fill="#991b1b" font-family="'Consolas','Courier New',monospace">tu puesto de trabajo</text>
+  <line x1="440" y1="184" x2="440" y2="248" stroke="#ef4444" stroke-width="2.5"/>
+  <circle cx="440" cy="250" r="4" fill="#ef4444"/>
+
+  <!-- Targets (bottom row) -->
+  <!-- helper: each target -->
+  <g font-size="11" text-anchor="middle">
+    <!-- DVWA -->
+    <g filter="url(#s3)"><rect x="46" y="352" width="150" height="104" rx="12" fill="#fffbeb" stroke="#f59e0b" stroke-width="2"/></g>
+    <text x="121" y="378" font-size="13.5" font-weight="700" fill="#b45309">🎯 dvwa</text>
+    <text x="121" y="398" fill="#92400e">Web vulnerable (PHP)</text>
+    <text x="121" y="418" fill="#a16207" font-family="'Consolas','Courier New',monospace">tcp/80</text>
+    <text x="121" y="438" fill="#a16207" font-size="10">host → :8081</text>
+    <line x1="121" y1="352" x2="121" y2="310" stroke="#94a3b8" stroke-width="2"/>
+
+    <!-- FTP -->
+    <g filter="url(#s3)"><rect x="212" y="352" width="150" height="104" rx="12" fill="#fffbeb" stroke="#f59e0b" stroke-width="2"/></g>
+    <text x="287" y="378" font-size="13.5" font-weight="700" fill="#b45309">🎯 ftp-server</text>
+    <text x="287" y="398" fill="#92400e">FTP con contraseña</text>
+    <text x="287" y="418" fill="#a16207" font-family="'Consolas','Courier New',monospace">tcp/21</text>
+    <text x="287" y="438" fill="#a16207" font-size="10">+ anon-ftp (anónimo)</text>
+    <line x1="287" y1="352" x2="287" y2="310" stroke="#94a3b8" stroke-width="2"/>
+
+    <!-- SSH -->
+    <g filter="url(#s3)"><rect x="378" y="352" width="150" height="104" rx="12" fill="#fffbeb" stroke="#f59e0b" stroke-width="2"/></g>
+    <text x="453" y="378" font-size="13.5" font-weight="700" fill="#b45309">🎯 openssh-server</text>
+    <text x="453" y="398" fill="#92400e">Acceso remoto SSH</text>
+    <text x="453" y="418" fill="#a16207" font-family="'Consolas','Courier New',monospace">tcp/2222</text>
+    <text x="453" y="438" fill="#a16207" font-size="10">banner → versión SO</text>
+    <line x1="453" y1="352" x2="453" y2="310" stroke="#94a3b8" stroke-width="2"/>
+
+    <!-- Juice Shop -->
+    <g filter="url(#s3)"><rect x="544" y="352" width="150" height="104" rx="12" fill="#fffbeb" stroke="#f59e0b" stroke-width="2"/></g>
+    <text x="619" y="378" font-size="13.5" font-weight="700" fill="#b45309">🎯 juice-shop</text>
+    <text x="619" y="398" fill="#92400e">OWASP Top 10 (Node)</text>
+    <text x="619" y="418" fill="#a16207" font-family="'Consolas','Courier New',monospace">tcp/3000</text>
+    <text x="619" y="438" fill="#a16207" font-size="10">host → :3000</text>
+    <line x1="619" y1="352" x2="619" y2="310" stroke="#94a3b8" stroke-width="2"/>
+
+    <!-- Heartbleed -->
+    <g filter="url(#s3)"><rect x="710" y="352" width="124" height="104" rx="12" fill="#fffbeb" stroke="#f59e0b" stroke-width="2"/></g>
+    <text x="772" y="378" font-size="12.5" font-weight="700" fill="#b45309">🎯 heartbleed</text>
+    <text x="772" y="398" fill="#92400e" font-size="10">nginx + OpenSSL</text>
+    <text x="772" y="416" fill="#a16207" font-family="'Consolas','Courier New',monospace" font-size="10">tcp/443</text>
+    <text x="772" y="434" fill="#a16207" font-size="9.5">CVE-2014-0160</text>
+    <line x1="772" y1="352" x2="772" y2="310" stroke="#94a3b8" stroke-width="2"/>
+  </g>
+
+  <text x="440" y="498" text-anchor="middle" font-size="12.5" fill="#64748b">Desde <tspan font-family="'Consolas','Courier New',monospace" fill="#b91c1c">kali</tspan> puedes hacer <tspan font-family="'Consolas','Courier New',monospace">ping dvwa</tspan> o <tspan font-family="'Consolas','Courier New',monospace">nmap juice-shop</tspan> — sin IPs, Docker resuelve el nombre.</text>
+  <text x="440" y="524" text-anchor="middle" font-size="11.5" fill="#94a3b8">⚠️ Entorno de prácticas aislado. Escanea y prueba SOLO estas máquinas del laboratorio.</text>
+</svg>

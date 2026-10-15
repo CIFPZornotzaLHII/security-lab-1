@@ -1,0 +1,10 @@
+¡Hola! Este fichero está servido por el servidor FTP ANÓNIMO del laboratorio.
+
+Si puedes leer esto sin haber introducido ninguna contraseña, significa que
+el servidor permite el acceso del usuario "anonymous".
+
+Pista: un servidor FTP que deja entrar a cualquiera y expone ficheros es un
+hallazgo clásico de una auditoría. ¿Qué información sensible podría acabar
+aquí por error en un caso real?
+
+(Coloca aquí los ficheros que quieras ofrecer al usuario anónimo durante la práctica.)

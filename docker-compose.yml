@@ -1,0 +1,110 @@
+# =============================================================================
+#  🐳 Laboratorio de Docker + Seguridad  —  todo el entorno en un solo archivo
+# -----------------------------------------------------------------------------
+#  Levantar todo:        docker compose up -d
+#  Levantar una parte:   docker compose up -d kali dvwa
+#  Ver estado:           docker compose ps
+#  Entrar en Kali:       docker compose exec kali bash
+#  Apagar y limpiar:     docker compose down
+#
+#  ⚠️  Entorno de PRÁCTICAS. Todas las máquinas "víctima" son intencionadamente
+#      vulnerables y viven en una red privada y aislada de Docker (lab-network).
+#      Practica SOLO contra estas máquinas.
+# =============================================================================
+
+services:
+
+  # ─── 🛡️ Máquina atacante ──────────────────────────────────────────────────
+  # Se construye desde ./kali/Dockerfile para traer las herramientas ya listas.
+  kali:
+    build: ./kali
+    image: kali-lab:latest
+    container_name: kali
+    tty: true              # mantiene una terminal viva
+    stdin_open: true       # permite escribir en ella (docker exec -it)
+    restart: unless-stopped
+    volumes:
+      - ./home:/home       # tus archivos y capturas se guardan en el anfitrión
+    cap_add:
+      - NET_ADMIN          # permite operaciones de red avanzadas (nmap -O, etc.)
+      - NET_RAW
+    networks:
+      - lab-network
+
+  # ─── 🎯 DVWA — Damn Vulnerable Web Application (web clásica en PHP) ─────────
+  dvwa:
+    image: vulnerables/web-dvwa
+    container_name: dvwa
+    restart: unless-stopped
+    ports:
+      - "8081:80"          # ábrelo en tu navegador: http://localhost:8081
+    networks:
+      - lab-network
+
+  # ─── 🎯 OWASP Juice Shop — web moderna (Node.js, OWASP Top 10) ─────────────
+  juice-shop:
+    image: bkimminich/juice-shop
+    container_name: juice-shop
+    restart: unless-stopped
+    ports:
+      - "3000:3000"        # navegador: http://localhost:3000
+    networks:
+      - lab-network
+
+  # ─── 🎯 Servidor FTP con usuario y contraseña ──────────────────────────────
+  ftp-server:
+    image: garethflowers/ftp-server
+    container_name: ftp-server
+    restart: unless-stopped
+    environment:
+      - FTP_USER=user
+      - FTP_PASS=louise    # cámbialo para practicar fuerza bruta con otro valor
+    # Sin "ports": solo accesible desde dentro de lab-network (más realista).
+    networks:
+      - lab-network
+
+  # ─── 🎯 Servidor FTP anónimo (sin contraseña) ──────────────────────────────
+  anon-ftp:
+    image: metabrainz/docker-anon-ftp
+    container_name: anon-ftp
+    restart: unless-stopped
+    volumes:
+      - ./targets/anon-ftp:/var/ftp:ro   # ficheros ofrecidos al usuario anónimo
+    networks:
+      - lab-network
+
+  # ─── 🎯 Servidor SSH ────────────────────────────────────────────────────────
+  openssh-server:
+    image: linuxserver/openssh-server
+    container_name: openssh-server
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+      - USER_NAME=sinfor
+      - PASSWORD_ACCESS=true
+      - USER_PASSWORD=louise   # credencial que buscaremos con el diccionario
+    # Puerto interno 2222. Accesible dentro de lab-network como openssh-server:2222
+    networks:
+      - lab-network
+
+  # ─── 🎯 Heartbleed — nginx con OpenSSL vulnerable (CVE-2014-0160) ──────────
+  # Imagen "Vulnerability as a Service" ya construida, para no compilar nada.
+  heartbleed:
+    image: hmlio/vaas-cve-2014-0160
+    container_name: heartbleed
+    restart: unless-stopped
+    # Puerto interno 443 (HTTPS). Lo analizaremos con sslscan y nmap.
+    networks:
+      - lab-network
+
+# ─── 🌐 Red privada del laboratorio ──────────────────────────────────────────
+# Todos los contenedores la comparten, así que se resuelven por su nombre
+# (p. ej. `nmap dvwa`). La subred fija hace las IPs predecibles.
+networks:
+  lab-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

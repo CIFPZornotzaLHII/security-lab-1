@@ -1,0 +1,11 @@
+# Datos de trabajo dentro del contenedor Kali (capturas, diccionarios, scans…)
+home/*
+!home/.gitkeep
+
+# Diccionarios y binarios grandes que se descargan durante las prácticas
+*.tar.gz
+rockyou.txt
+
+# Basura típica del sistema
+.DS_Store
+Thumbs.db

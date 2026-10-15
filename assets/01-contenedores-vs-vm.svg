@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 470" width="880" height="470" font-family="'Segoe UI', system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <filter id="s1" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- card -->
+  <rect x="1" y="1" width="878" height="468" rx="18" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="440" y="40" text-anchor="middle" font-size="24" font-weight="700" fill="#0f172a">Contenedores vs. Máquinas Virtuales</text>
+  <text x="440" y="64" text-anchor="middle" font-size="14" fill="#64748b">Los contenedores comparten el kernel del anfitrión: arrancan en segundos y pesan mucho menos</text>
+
+  <!-- ===================== LEFT: VMs ===================== -->
+  <g filter="url(#s1)">
+    <rect x="40" y="88" width="370" height="356" rx="14" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+  </g>
+  <text x="225" y="116" text-anchor="middle" font-size="17" font-weight="700" fill="#0f172a">Máquinas Virtuales</text>
+
+  <!-- VM guest boxes -->
+  <g font-size="11" text-anchor="middle">
+    <!-- box 1 -->
+    <rect x="56" y="138" width="106" height="150" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+    <rect x="64" y="146" width="90" height="34" rx="5" fill="#fb923c"/><text x="109" y="167" fill="#fff" font-weight="600">App A</text>
+    <rect x="64" y="186" width="90" height="34" rx="5" fill="#fed7aa"/><text x="109" y="207" fill="#9a3412">Libs / Bin</text>
+    <rect x="64" y="226" width="90" height="54" rx="5" fill="#fdba74"/><text x="109" y="250" fill="#7c2d12" font-weight="600">SO Invitado</text><text x="109" y="266" fill="#7c2d12" font-size="9">(kernel propio)</text>
+    <!-- box 2 -->
+    <rect x="172" y="138" width="106" height="150" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+    <rect x="180" y="146" width="90" height="34" rx="5" fill="#fb923c"/><text x="225" y="167" fill="#fff" font-weight="600">App B</text>
+    <rect x="180" y="186" width="90" height="34" rx="5" fill="#fed7aa"/><text x="225" y="207" fill="#9a3412">Libs / Bin</text>
+    <rect x="180" y="226" width="90" height="54" rx="5" fill="#fdba74"/><text x="225" y="250" fill="#7c2d12" font-weight="600">SO Invitado</text><text x="225" y="266" fill="#7c2d12" font-size="9">(kernel propio)</text>
+    <!-- box 3 -->
+    <rect x="288" y="138" width="106" height="150" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+    <rect x="296" y="146" width="90" height="34" rx="5" fill="#fb923c"/><text x="341" y="167" fill="#fff" font-weight="600">App C</text>
+    <rect x="296" y="186" width="90" height="34" rx="5" fill="#fed7aa"/><text x="341" y="207" fill="#9a3412">Libs / Bin</text>
+    <rect x="296" y="226" width="90" height="54" rx="5" fill="#fdba74"/><text x="341" y="250" fill="#7c2d12" font-weight="600">SO Invitado</text><text x="341" y="266" fill="#7c2d12" font-size="9">(kernel propio)</text>
+  </g>
+
+  <!-- VM base layers -->
+  <g text-anchor="middle" font-size="12.5" font-weight="600">
+    <rect x="56" y="298" width="338" height="34" rx="6" fill="#c7d2fe" stroke="#a5b4fc"/><text x="225" y="320" fill="#3730a3">Hipervisor</text>
+    <rect x="56" y="338" width="338" height="34" rx="6" fill="#e2e8f0" stroke="#cbd5e1"/><text x="225" y="360" fill="#334155">Sistema Operativo Anfitrión</text>
+    <rect x="56" y="378" width="338" height="34" rx="6" fill="#cbd5e1" stroke="#94a3b8"/><text x="225" y="400" fill="#1e293b">Infraestructura (Hardware)</text>
+  </g>
+
+  <!-- ===================== RIGHT: Containers ===================== -->
+  <g filter="url(#s1)">
+    <rect x="470" y="88" width="370" height="356" rx="14" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+  </g>
+  <text x="655" y="116" text-anchor="middle" font-size="17" font-weight="700" fill="#0f172a">Contenedores (Docker)</text>
+
+  <!-- empty space shows lightness -->
+  <text x="655" y="176" text-anchor="middle" font-size="11" fill="#94a3b8" font-style="italic">— sin SO invitado por contenedor —</text>
+
+  <g font-size="11" text-anchor="middle">
+    <rect x="486" y="200" width="106" height="88" rx="8" fill="#e0f2fe" stroke="#7dd3fc" stroke-width="1.5"/>
+    <rect x="494" y="208" width="90" height="34" rx="5" fill="#0ea5e9"/><text x="539" y="229" fill="#fff" font-weight="600">App A</text>
+    <rect x="494" y="248" width="90" height="32" rx="5" fill="#bae6fd"/><text x="539" y="268" fill="#075985">Libs / Bin</text>
+
+    <rect x="602" y="200" width="106" height="88" rx="8" fill="#e0f2fe" stroke="#7dd3fc" stroke-width="1.5"/>
+    <rect x="610" y="208" width="90" height="34" rx="5" fill="#0ea5e9"/><text x="655" y="229" fill="#fff" font-weight="600">App B</text>
+    <rect x="610" y="248" width="90" height="32" rx="5" fill="#bae6fd"/><text x="655" y="268" fill="#075985">Libs / Bin</text>
+
+    <rect x="718" y="200" width="106" height="88" rx="8" fill="#e0f2fe" stroke="#7dd3fc" stroke-width="1.5"/>
+    <rect x="726" y="208" width="90" height="34" rx="5" fill="#0ea5e9"/><text x="771" y="229" fill="#fff" font-weight="600">App C</text>
+    <rect x="726" y="248" width="90" height="32" rx="5" fill="#bae6fd"/><text x="771" y="268" fill="#075985">Libs / Bin</text>
+  </g>
+
+  <g text-anchor="middle" font-size="12.5" font-weight="600">
+    <rect x="486" y="298" width="338" height="34" rx="6" fill="#2496ED" stroke="#1d7fd1"/><text x="655" y="320" fill="#ffffff">Docker Engine</text>
+    <rect x="486" y="338" width="338" height="34" rx="6" fill="#e2e8f0" stroke="#cbd5e1"/><text x="655" y="360" fill="#334155">Sistema Operativo Anfitrión</text>
+    <rect x="486" y="378" width="338" height="34" rx="6" fill="#cbd5e1" stroke="#94a3b8"/><text x="655" y="400" fill="#1e293b">Infraestructura (Hardware)</text>
+  </g>
+
+  <text x="440" y="436" text-anchor="middle" font-size="11.5" fill="#94a3b8">Menos capas = menos consumo de RAM/disco, arranque casi instantáneo y entornos reproducibles</text>
+</svg>

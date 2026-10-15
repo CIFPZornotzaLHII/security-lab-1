@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 380" width="880" height="380" font-family="'Segoe UI', system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arr6" markerWidth="12" markerHeight="12" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#2496ED"/>
+    </marker>
+    <filter id="s6" x="-8%" y="-8%" width="116%" height="124%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect x="1" y="1" width="878" height="378" rx="18" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="440" y="40" text-anchor="middle" font-size="24" font-weight="700" fill="#0f172a">Publicar puertos: <tspan font-family="'Consolas','Courier New',monospace" fill="#2496ED">-p 8081:80</tspan></text>
+  <text x="440" y="64" text-anchor="middle" font-size="14" fill="#64748b">Conectas un puerto de tu equipo a un puerto interno del contenedor</text>
+
+  <!-- browser / outside -->
+  <g filter="url(#s6)"><rect x="50" y="130" width="200" height="120" rx="14" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/></g>
+  <text x="150" y="160" text-anchor="middle" font-size="14" font-weight="700" fill="#334155">🌐 Navegador</text>
+  <text x="150" y="190" text-anchor="middle" font-size="12" fill="#475569" font-family="'Consolas','Courier New',monospace">localhost:8081</text>
+  <text x="150" y="222" text-anchor="middle" font-size="11" fill="#94a3b8">tú, en el anfitrión</text>
+
+  <!-- host boundary -->
+  <g filter="url(#s6)"><rect x="330" y="110" width="220" height="160" rx="14" fill="#dbeafe" stroke="#2496ED" stroke-width="2.5"/></g>
+  <text x="440" y="138" text-anchor="middle" font-size="14" font-weight="700" fill="#1e40af">Anfitrión</text>
+  <rect x="362" y="156" width="156" height="44" rx="10" fill="#fff" stroke="#60a5fa"/>
+  <text x="440" y="183" text-anchor="middle" font-size="13" font-weight="700" fill="#1d4ed8" font-family="'Consolas','Courier New',monospace">puerto 8081</text>
+  <text x="440" y="228" text-anchor="middle" font-size="11" fill="#2563eb">puerto publicado</text>
+  <text x="440" y="246" text-anchor="middle" font-size="11" fill="#2563eb">(visible desde fuera)</text>
+
+  <!-- container -->
+  <g filter="url(#s6)"><rect x="630" y="110" width="200" height="160" rx="14" fill="#dcfce7" stroke="#22c55e" stroke-width="2.5"/></g>
+  <text x="730" y="138" text-anchor="middle" font-size="14" font-weight="700" fill="#166534">Contenedor dvwa</text>
+  <rect x="652" y="156" width="156" height="44" rx="10" fill="#fff" stroke="#86efac"/>
+  <text x="730" y="183" text-anchor="middle" font-size="13" font-weight="700" fill="#15803d" font-family="'Consolas','Courier New',monospace">puerto 80</text>
+  <text x="730" y="228" text-anchor="middle" font-size="11" fill="#16a34a">servidor web Apache</text>
+  <text x="730" y="246" text-anchor="middle" font-size="11" fill="#16a34a">escuchando dentro</text>
+
+  <line x1="250" y1="190" x2="328" y2="190" stroke="#2496ED" stroke-width="3" marker-end="url(#arr6)"/>
+  <line x1="550" y1="178" x2="628" y2="178" stroke="#2496ED" stroke-width="3" marker-end="url(#arr6)"/>
+  <text x="590" y="168" text-anchor="middle" font-size="10.5" fill="#1d7fd1" font-weight="700">8081→80</text>
+
+  <text x="440" y="322" text-anchor="middle" font-size="12.5" fill="#64748b">Dentro de la red del lab no necesitas publicar: <tspan font-family="'Consolas','Courier New',monospace" fill="#166534">nmap -p80 dvwa</tspan> llega directo al puerto 80 interno.</text>
+  <text x="440" y="348" text-anchor="middle" font-size="11.5" fill="#94a3b8">Publicar (<tspan font-family="'Consolas','Courier New',monospace">-p</tspan>) solo hace falta para abrirlo a tu navegador o a la red física.</text>
+</svg>
